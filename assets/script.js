@@ -9,15 +9,21 @@ canvas.height = window.innerHeight/1.5;
 var yval = canvas.height-75;
 var xval = (canvas.width/2) - 35;
 var score = 0
-var start = false;
-var inter;
+var play = false;
+var start;
+var popTarget;
+var startTimer;
 
 var difficulty = 0;
 var theme = 0;
 var timer = 0;
 var minutes = 0;
-var numberTarget = 10;
+var numberTarget = 5;
 var live = 3;
+
+function timerScore() {
+    timer++;
+}
 
 document.getElementById("buttonStart").addEventListener("click", () => {
     if(difficulty === 0) {
@@ -25,19 +31,23 @@ document.getElementById("buttonStart").addEventListener("click", () => {
     }
     else {
         document.getElementById("winLose").innerHTML = "";
-        if (start) {
+        if (play) {
             document.getElementById("buttonStart").innerHTML = "Start game";
-            clearInterval(inter);
-            start = false;
+            clearInterval(start);
+            // clearInterval(popTarget);
+            clearInterval(startTimer);
+            play = false;
         } else {
             document.getElementById("buttonStart").innerHTML = "Pause game";
-            inter = setInterval(draw, 10);
-            start = true;
+            start = setInterval(draw, 10);
+            // popTarget = setInterval(drawTarget, 10);
+            startTimer = setInterval(timerScore, 1000)
+            play = true;
         }
-        if(start === true) {
+        if(play === true) {
             document.getElementById("buttonDifficulty").disabled = true;
         }
-        if(start === true) {
+        if(play === true) {
             document.getElementById("buttonTheme").disabled = true;
         }
     }
@@ -88,7 +98,6 @@ document.getElementById("buttonTheme").addEventListener("click", () => {
     }
 });
 
-var yvalTarget = -35;
 var x = canvas.width/2;
 var y = canvas.height-75;
 var ballRadius = 5;
@@ -96,26 +105,42 @@ var dy = -2;
 
 var shipX;
 document.addEventListener('mousemove', function(event) {
-    shipX = event.clientX-35
+    
+    if (event.path[0].id === "game") {
+        shipX = event.clientX-35
+        
+    }
 });
 
 var target = 0
 var arrayTarget = [];
 for (let i = 0; i < numberTarget; i++) {
-    arrayTarget.push(Math.floor(Math.random() * (canvas.width -35)))
+    arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
 }
 
+
+
 function newTarget(){
-    if (target == arrayTarget.length-1) {
+    if (target == arrayTarget.length) {
+        target = 0
+        arrayTarget = [];
         for (let i = 0; i < numberTarget; i++) {
-            arrayTarget.push(Math.floor(Math.random() * (canvas.width -35)))
+            arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
+            
         }
     }
 }
 
-function drawTarget(a) {
-    ctx.drawImage(image2, a, yvalTarget, image2.width = 35, image2.height = 35);
-    yvalTarget += 1 * difficulty;
+function drawTarget() {
+    for (let i = 0; i < arrayTarget.length; i++) {
+        ctx.drawImage(image2, arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+        arrayTarget[i].y += 1 * difficulty;
+        
+    }
+    
+    // ctx.drawImage(image2, arrayTarget[target].x, arrayTarget[target].y, image2.width = 35, image2.height = 35);
+    // arrayTarget[target].y += 1 * difficulty;
+    
 }
 
 function drawShip (){
@@ -124,52 +149,61 @@ function drawShip (){
 
 var arrayProjectile = [];
 document.addEventListener("mousedown", function setProjectile(event) {
-    arrayProjectile.push([shipX, y])
+    
+    if (event.path[0].id === "game") {
+        arrayProjectile.push([shipX, y])        
+    }
 })
 
 var numTarget;
 function drawProjectile() {
     for(numTarget = 0; numTarget < arrayProjectile.length; numTarget++){
-        if(arrayTarget[target] < arrayProjectile[numTarget][0]+35 + 5 && arrayTarget[target] + 35 > arrayProjectile[numTarget][0]+35 && yvalTarget < arrayProjectile[numTarget][1] + 5 && 35 + yvalTarget > arrayProjectile[numTarget][1]) { //shoot hit
-            ctx.clearRect(arrayTarget[target], yvalTarget, image2.width = 70, image2.height = 70);
-            arrayProjectile.splice(numTarget, 1);
-            score++;
-            yvalTarget = -35;
-            target++;
-            drawTarget(arrayTarget[target]);
-        }
-        if (arrayProjectile.length > 0) {
-            ctx.beginPath();
-            ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
-            ctx.fillStyle = "#c73133";
-            ctx.fill();
-            ctx.closePath();
-            arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
-            if (arrayProjectile[numTarget][1] < 0) {
+        for (let i = arrayTarget.length-1; i > -1; i--) {
+            if(arrayTarget[i].x < arrayProjectile[numTarget][0]+35 + 5 && arrayTarget[i].x + 35 > arrayProjectile[numTarget][0]+35 && arrayTarget[i].y < arrayProjectile[numTarget][1] + 5 && 35 + arrayTarget[i].y > arrayProjectile[numTarget][1]) { //shoot hit
+                ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
                 arrayProjectile.splice(numTarget, 1);
+                arrayTarget.splice(i, 1, {});
+                score++;
+                target++;
+                
+                
+                
+                //drawTarget(arrayTarget[i+1].x, arrayTarget[i+1].y);
+            }
+            if (arrayProjectile.length > 0) {
+                ctx.beginPath();
+                ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
+                ctx.fillStyle = "#c73133";
+                ctx.fill();
+                ctx.closePath();
+                arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
+                if (arrayProjectile[numTarget][1] < 0) {
+                    arrayProjectile.splice(numTarget, 1);
+                }
             }
         }
     }
 }
 
 function collides() {
-    if(arrayTarget[target] < shipX+35 + 70 && arrayTarget[target] + 35 > shipX+35 && yvalTarget < yval + 70 && 35 + yvalTarget > yval) { //target hit
-        ctx.clearRect(arrayTarget[target], yvalTarget, image2.width = 70, image2.height = 70);
-        arrayProjectile.splice(numTarget, 1);
-        yvalTarget = -35;
-        target++;
-        drawTarget(arrayTarget[target]);
-        live--;
-        checkLive();
-    }
-    if(yvalTarget > canvas.height) {
-        ctx.clearRect(arrayTarget[target], yvalTarget, image2.width = 70, image2.height = 70);
-        arrayProjectile.splice(numTarget, 1);
-        yvalTarget = -35;
-        target++;
-        drawTarget(arrayTarget[target]);
-        live--;
-        checkLive();
+    for (let i = 0; i < arrayTarget.length; i++) {
+        if(arrayTarget[i].x < shipX+35 + 70 && arrayTarget[i].x + 35 > shipX+35 && arrayTarget[i].y < yval + 70 && 35 + arrayTarget[i].y > yval) { //target hit
+            ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+            arrayTarget.splice(i, 1, {});
+            target++;
+            //drawTarget(arrayTarget[target].x, arrayTarget[target].y);
+            live--;
+            checkLive();
+        }
+        if(arrayTarget[i].y > canvas.height) {
+            ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+            arrayTarget.splice(i, 1, {});
+            target++;
+            //drawTarget(arrayTarget[target].x, arrayTarget[target].y);
+            // live--;
+            // checkLive();
+        }
+        
     }
 }
 
@@ -181,7 +215,7 @@ function checkLive() {
         document.getElementById("live2").setAttribute("style", "display: none");
     }
     else if(live === 0) {
-        clearInterval(inter);
+        clearInterval(start);
         document.getElementById("winLose").innerHTML = "You Lose !";
         document.getElementById("game").setAttribute("style", "opacity: 0.5");
         document.getElementById("live").setAttribute("style", "display: none");
@@ -190,7 +224,6 @@ function checkLive() {
 
 function logScore() {
     document.getElementById("score").innerHTML = score;
-    // document.getElementById("numberTargetos").innerHTML = "/" + numberTarget;
 }
 
 // function win() {
@@ -214,9 +247,10 @@ function time(){
     } 
 }
 
+
 function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawTarget(arrayTarget[target])
+    drawTarget();
     drawProjectile()
     drawShip();
     collides()
@@ -226,7 +260,4 @@ function draw(){
     newTarget()
 }
 
-var interTimer = setInterval(timerScore, 1000);
-function timerScore() {
-    timer++;
-}
+
