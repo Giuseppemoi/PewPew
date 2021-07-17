@@ -187,7 +187,7 @@ function drawProjectile() {
 
 function collides() {
     for (let i = 0; i < arrayTarget.length; i++) {
-        if(arrayTarget[i].x < shipX+35 + 70 && arrayTarget[i].x + 35 > shipX+35 && arrayTarget[i].y < yval + 70 && 35 + arrayTarget[i].y > yval) { //target hit
+        if(arrayTarget[i].x < shipX + 70 && arrayTarget[i].x + 35 > shipX && arrayTarget[i].y < yval + 70 && 35 + arrayTarget[i].y > yval) { //target hit
             ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
             arrayTarget.splice(i, 1, {});
             target++;
