@@ -15,7 +15,7 @@ var start;
 var popTarget;
 var startTimer;
 
-var difficulty = 0;
+var difficulty = 1;
 var theme = 0;
 var timer = 0;
 var minutes = 0;
@@ -27,11 +27,11 @@ function timerScore() {
 }
 
 document.getElementById("buttonStart").addEventListener("click", () => {
-    if(difficulty === 0) {
-        document.getElementById("winLose").innerHTML = "Choice your difficulty !";
-    }
-    else {
-        document.getElementById("winLose").innerHTML = "";
+    // if(difficulty === 0) {
+    //     document.getElementById("winLose").innerHTML = "Choice your difficulty !";
+    // }
+    // else {
+    //     document.getElementById("winLose").innerHTML = "";
         if (play) {
             document.getElementById("buttonStart").innerHTML = "Start game";
             clearInterval(start);
@@ -43,38 +43,38 @@ document.getElementById("buttonStart").addEventListener("click", () => {
             startTimer = setInterval(timerScore, 1000)
             play = true;
         }
-        if(play === true) {
-            document.getElementById("buttonDifficulty").disabled = true;
-        }
-        if(play === true) {
-            document.getElementById("buttonTheme").disabled = true;
-        }
-    }
+    //     if(play === true) {
+    //         document.getElementById("buttonDifficulty").disabled = true;
+    //     }
+    //     if(play === true) {
+    //         document.getElementById("buttonTheme").disabled = true;
+    //     }
+    // }
 });
 
 document.getElementById("buttonReset").addEventListener("click", () => {
     window.location.reload()
 })
 
-document.getElementById("buttonDifficulty").addEventListener("click", () => {
-    difficulty++;
-    if(difficulty === 1) {
-        document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Easy";
-    }
-    else if(difficulty === 2) {
-        document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Medium";
-    }
-    else if(difficulty === 3) {
-        document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Hard";
-    }
-    else if(difficulty === 4) {
-        document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Extrem";
-    }
-    else if(difficulty === 5) {
-        difficulty = 1;
-        document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Easy";
-    }
-});
+// document.getElementById("buttonDifficulty").addEventListener("click", () => {
+//     difficulty++;
+//     if(difficulty === 1) {
+//         document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Easy";
+//     }
+//     else if(difficulty === 2) {
+//         document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Medium";
+//     }
+//     else if(difficulty === 3) {
+//         document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Hard";
+//     }
+//     else if(difficulty === 4) {
+//         document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Extrem";
+//     }
+//     else if(difficulty === 5) {
+//         difficulty = 1;
+//         document.getElementById("buttonDifficulty").innerHTML = "Difficulty: Easy";
+//     }
+// });
 
 document.getElementById("buttonTheme").addEventListener("click", () => {
     theme++;
@@ -185,15 +185,17 @@ function drawProjectile() {
                     score++;
                     target++;
                 }
-                if (arrayProjectile.length > 0) {
-                    ctx.beginPath();
-                    ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
-                    ctx.fillStyle = "#c73133";
-                    ctx.fill();
-                    ctx.closePath();
-                    arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
-                    if (arrayProjectile[numTarget][1] < 0) {
-                        arrayProjectile.splice(numTarget, 1);
+                if (arrayProjectile[numTarget] != undefined) {
+                    if (arrayProjectile.length > 0) {
+                        ctx.beginPath();
+                        ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
+                        ctx.fillStyle = "#c73133";
+                        ctx.fill();
+                        ctx.closePath();
+                        arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
+                        if (arrayProjectile[numTarget][1] < 0) {
+                            arrayProjectile.splice(numTarget, 1);
+                        }
                     }
                 }
             }
