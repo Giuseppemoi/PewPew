@@ -119,7 +119,7 @@ function newTarget(){
 function drawTarget() {
     for (let i = 0; i < arrayTarget.length; i++) {
         ctx.drawImage(image2, arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
-        arrayTarget[i].y += 1 * difficulty;
+        arrayTarget[i].y += (1 * difficulty) + ((`0.${i}`)*2);
     }
 }
 
