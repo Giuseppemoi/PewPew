@@ -2,6 +2,7 @@ var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
 var image2 = document.getElementById("source2");
 var img = document.getElementById("source");
+var imgHaert = document.getElementById("source3")
 ctx.lineWidth = "5";
 ctx.strokeStyle = "rgb(54, 95, 156)";
 canvas.width  = window.innerWidth;
@@ -34,13 +35,11 @@ document.getElementById("buttonStart").addEventListener("click", () => {
         if (play) {
             document.getElementById("buttonStart").innerHTML = "Start game";
             clearInterval(start);
-            // clearInterval(popTarget);
             clearInterval(startTimer);
             play = false;
         } else {
             document.getElementById("buttonStart").innerHTML = "Pause game";
             start = setInterval(draw, 10);
-            // popTarget = setInterval(drawTarget, 10);
             startTimer = setInterval(timerScore, 1000)
             play = true;
         }
@@ -112,21 +111,41 @@ document.addEventListener('mousemove', function(event) {
     }
 });
 
-var target = 0
-var arrayTarget = [];
-for (let i = 0; i < numberTarget; i++) {
-    arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
+var arrayHaert = [];
+var haert = 0
+for (let i = 0; i < 5; i++) {
+    arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500000)-35})
+}
+function drawHaert() {
+    for (let i = 0; i < arrayHaert.length; i++) {
+        ctx.drawImage(imgHaert, arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 15, imgHaert.height = 15);
+        arrayHaert[i].y += 1 * difficulty; 
+    }
+}
+function newHaert(){
+    if (haert == arrayHaert.length) {
+        console.log("ok1")
+        haert = 0
+        arrayHaert = [];
+        for (let i = 0; i < 5; i++) {
+            console.log("ok2")
+            arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500000)-35})
+        }
+    }
 }
 
-
+var target = 0;
+var arrayTarget = [];
+for (let i = 0; i < numberTarget; i++) {
+    arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -100)-35})
+}
 
 function newTarget(){
     if (target == arrayTarget.length) {
         target = 0
         arrayTarget = [];
         for (let i = 0; i < numberTarget; i++) {
-            arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
-            
+            arrayTarget.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -1000)-35})
         }
     }
 }
@@ -135,12 +154,7 @@ function drawTarget() {
     for (let i = 0; i < arrayTarget.length; i++) {
         ctx.drawImage(image2, arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
         arrayTarget[i].y += 1 * difficulty;
-        
     }
-    
-    // ctx.drawImage(image2, arrayTarget[target].x, arrayTarget[target].y, image2.width = 35, image2.height = 35);
-    // arrayTarget[target].y += 1 * difficulty;
-    
 }
 
 function drawShip (){
@@ -165,10 +179,6 @@ function drawProjectile() {
                 arrayTarget.splice(i, 1, {});
                 score++;
                 target++;
-                
-                
-                
-                //drawTarget(arrayTarget[i+1].x, arrayTarget[i+1].y);
             }
             if (arrayProjectile.length > 0) {
                 ctx.beginPath();
@@ -184,41 +194,56 @@ function drawProjectile() {
         }
     }
 }
+var liveFlex = document.getElementById("liveFlex")
 
 function collides() {
     for (let i = 0; i < arrayTarget.length; i++) {
         if(arrayTarget[i].x < shipX + 70 && arrayTarget[i].x + 35 > shipX && arrayTarget[i].y < yval + 70 && 35 + arrayTarget[i].y > yval) { //target hit
+            var haertImg = document.getElementById(`live${live}`)
             ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
             arrayTarget.splice(i, 1, {});
             target++;
-            //drawTarget(arrayTarget[target].x, arrayTarget[target].y);
+            liveFlex.removeChild(haertImg)
             live--;
             checkLive();
+        }
+        if(arrayHaert[i].x < shipX + 70 && arrayHaert[i].x + 15 > shipX && arrayHaert[i].y < yval + 70 && 15 + arrayHaert[i].y > yval) { //target hit
+            ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+            arrayHaert.splice(i, 1, {});
+            live++;
+            haert++;
+            liveFlex.innerHTML += `<img id="live${live}" class="heartClass" src="assets/img/hearticon-removebg-preview.png"></img>`;
+            console.log(haert)
+            console.log(arrayHaert.length)
         }
         if(arrayTarget[i].y > canvas.height) {
             ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
             arrayTarget.splice(i, 1, {});
             target++;
-            //drawTarget(arrayTarget[target].x, arrayTarget[target].y);
-            // live--;
-            // checkLive();
+        }
+        if(arrayHaert[i].y > canvas.height) {
+            ctx.clearRect(arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 35, imgHaert.height = 35);
+            arrayHaert.splice(i, 1, {});
+            haert++;
+            console.log(haert)
+            console.log(arrayHaert.length)
         }
         
     }
 }
 
 function checkLive() {
-    if(live === 2 ){
+    /*if(live === 2 ){
     document.getElementById("live3").setAttribute("style", "display: none");
     }
     else if(live === 1 ){
         document.getElementById("live2").setAttribute("style", "display: none");
     }
-    else if(live === 0) {
+    else*/ if(live === 0) {
         clearInterval(start);
         document.getElementById("winLose").innerHTML = "You Lose !";
         document.getElementById("game").setAttribute("style", "opacity: 0.5");
-        document.getElementById("live").setAttribute("style", "display: none");
+        //document.getElementById("live").setAttribute("style", "display: none");
     }
 }
 
@@ -258,6 +283,8 @@ function draw(){
     //win()
     time()
     newTarget()
+    drawHaert()
+    newHaert()
 }
 
 
