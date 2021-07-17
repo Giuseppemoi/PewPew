@@ -23,10 +23,10 @@ document.addEventListener("keydown", (event) => {
     console.log("ok1");
     if (event.code == "Space" && play) {
         startPlay();
-        play = false;
+        // play = false;
     } else if (event.code == "Space" && !play) {
         startPlay();
-        play = true;
+        // play = true;
     }
 });
 
@@ -34,19 +34,23 @@ function startPlay(){
     if (play) {
         document.getElementById("buttonStart").innerHTML = "Start game";
         clearInterval(start);
+        play = false;
+        document.exitFullscreen()
     } else {
         document.getElementById("buttonStart").innerHTML = "Pause game";
         start = setInterval(draw, 10);
+        play = true;
+        document.documentElement.requestFullscreen()
     }
 }
 
 document.getElementById("buttonStart").addEventListener("click", () => {
     if (play) {
         startPlay()
-        play = false;
+        // play = false;
     } else {
         startPlay()
-        play = true;
+        // play = true;
     }
 });
 
