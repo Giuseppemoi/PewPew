@@ -12,8 +12,6 @@ var xval = (canvas.width/2) - 35;
 var score = 0
 var play = false;
 var start;
-// var popTarget;
-// var startTimer;
 
 var difficulty = 1;
 var theme = 0;
@@ -21,22 +19,35 @@ var minutes = 0;
 var numberTarget = 5;
 var live = 3;
 
-// function timerScore() {
-//     timer++;
-// }
+document.addEventListener("keydown", (event) => {
+    console.log("ok1");
+    if (event.code == "Space" && play) {
+        startPlay();
+        play = false;
+    } else if (event.code == "Space" && !play) {
+        startPlay();
+        play = true;
+    }
+});
+
+function startPlay(){
+    if (play) {
+        document.getElementById("buttonStart").innerHTML = "Start game";
+        clearInterval(start);
+    } else {
+        document.getElementById("buttonStart").innerHTML = "Pause game";
+        start = setInterval(draw, 10);
+    }
+}
 
 document.getElementById("buttonStart").addEventListener("click", () => {
-        if (play) {
-            document.getElementById("buttonStart").innerHTML = "Start game";
-            clearInterval(start);
-            // clearInterval(startTimer);
-            play = false;
-        } else {
-            document.getElementById("buttonStart").innerHTML = "Pause game";
-            start = setInterval(draw, 10);
-            // startTimer = setInterval(timerScore, 1000)
-            play = true;
-        }
+    if (play) {
+        startPlay()
+        play = false;
+    } else {
+        startPlay()
+        play = true;
+    }
 });
 
 document.getElementById("buttonReset").addEventListener("click", () => {
