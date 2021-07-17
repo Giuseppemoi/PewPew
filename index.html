@@ -1,69 +1,43 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="Description" content="Ajax quote request" />
-<link rel="stylesheet" href="assets/index.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Niconne&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-<title>Space Invader</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Ajax quote request" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <!-- <link rel="stylesheet" href="assets/styleMath.css" /> -->
+    <title>Space Invader</title>
 </head>
 <body>
     <header>
-        <h1>Space Invader</h1>
-        <a href="https://github.com/MathisVkg" class="copyright">©Vkg Mathis</a>
+        <h1 class="title"><span class="blue">SPACE</span><span class="red">INVADER</span></h1>
     </header>
-    <p class="winLose" id="winLose"></p>
-    <p class="control">Control: Use you mose to move the ship and left click to shoot</p>
-    <div class="buttonPlay">
-        <button class="buttonUp" id="buttonStart">Start game</button>
-        <button class="buttonDown" id="buttonReset">Play again</button>
-        <div class="target" id="targetIt">Target hit: <span id="score" class="score"></span><span id="numberTargetos"></span></div>
-        <button class="buttonDiff" id="buttonDifficulty">Difficulty</button>
-        <button class="buttonTheme" id="buttonTheme">Theme</button>
+    <div class="buttons">
+        <p class="control">Control: Use your mouse to move the ship and left click to shoot</p>
+        <p class="winLose" id="winLose"></p>
+        <button class="tableScore btn" id="tableScore">Table Score</button>
+        <button class="buttonStart btn" id="buttonStart">Start game</button>
+        <button class="buttonReset btn" id="buttonReset">Play again</button>
         <p class="timer" id="gameTime">Timer :</p>
+        <p class="target" id="targetIt">Target hit: <span id="score" class="score"></span><span id="numberTargetos"></span></p>
+        <button class="buttonDiff btn" id="buttonDifficulty">Difficulty</button>
+        <button class="buttonTheme btn" id="buttonTheme">Theme</button>
+        <div class="bonus" id="bonus">Bonus :</div>
         <div class="liveFlex">
             <img id="live" class="heartClass" src="assets/img/hearticon-removebg-preview.png">
             <img id="live2" class="heartClass" src="assets/img/hearticon-removebg-preview.png">
             <img id="live3" class="heartClass" src="assets/img/hearticon-removebg-preview.png">
         </div>
     </div>
-    <div class="container">
-        <canvas id="game"></canvas>
-        <img id="source" src="assets/img/testpng-removebg-preview.png">
-        <img id="source2" src="assets/img/target.png">
-    </div>
+    <canvas id="game"></canvas>
+    <img class="none" id="source" src="assets/img/testpng-removebg-preview.png">
+    <img class="none" id="source2" src="assets/img/target.png">
+    <footer>
+        <a href="https://becode.org/" target="blank">BeCode</a>
+        <a href="https://github.com/Giuseppemoi" target="blank">Giuseppe Moi 2021</a>
+        <a href="https://github.com/MathisVkg" target="blank">Mathis</a>
+    </footer>
     <script src="assets/script.js"></script>
 </body>
 </html>

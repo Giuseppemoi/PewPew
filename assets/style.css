@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Tourney:ital,wght@1,100&display=swap");
+body {
+  margin: 0;
+  background: -webkit-gradient(linear, left top, right bottom, from(#5b467c), to(#a44c98));
+  background: linear-gradient(to bottom right, #5b467c, #a44c98);
+}
+
+header {
+  height: 8vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+header .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: 'Tourney', cursive;
+  margin: 1rem;
+  font-size: 3rem;
+  text-align: center;
+  line-height: 1;
+  color: #c6e2ff;
+}
+
+header .title .blue {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(11, 0, 109, 0.52), 0 0 21px rgba(11, 0, 109, 0.92), 0 0 34px rgba(11, 0, 109, 0.78), 0 0 54px rgba(11, 0, 109, 0.92);
+}
+
+header .title .red {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(156, 0, 21, 0.52), 0 0 21px rgba(156, 0, 21, 0.92), 0 0 34px rgba(156, 0, 21, 0.78), 0 0 54px rgba(156, 0, 21, 0.92);
+}
+
+.buttons {
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100vw;
+}
+
+.buttons .btn {
+  cursor: url(img/testpng-removebg-preview.png) 2 2, pointer;
+}
+
+.buttons .control, .buttons .winLose, .buttons .tableScore {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 33.33333vw;
+}
+
+.buttons .buttonStart, .buttons .buttonReset, .buttons .timer, .buttons .target, .buttons .buttonDiff, .buttons .buttonTheme, .buttons .bonus, .buttons .liveFlex {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 12.5vw;
+}
+
+img.heartClass {
+  width: 1rem;
+  -webkit-animation: heartrotate 4000ms infinite linear;
+          animation: heartrotate 4000ms infinite linear;
+}
+
+@-webkit-keyframes heartrotate {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+
+@keyframes heartrotate {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+
+canvas {
+  background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
+  background-size: cover;
+  -webkit-box-shadow: 2px 2px 7px #0d0a1a;
+          box-shadow: 2px 2px 7px #0d0a1a;
+}
+
+.none {
+  display: none;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 4.33333vh;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000000;
+}
+/*# sourceMappingURL=style.css.map */
