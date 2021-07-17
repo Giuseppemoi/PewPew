@@ -111,11 +111,13 @@ document.addEventListener('mousemove', function(event) {
     }
 });
 
+var maxHaert = 1
 var arrayHaert = [];
 var haert = 0
-for (let i = 0; i < 5; i++) {
-    arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500000)-35})
+for (let i = 0; i < maxHaert; i++) {
+    arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
 }
+
 function drawHaert() {
     for (let i = 0; i < arrayHaert.length; i++) {
         ctx.drawImage(imgHaert, arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 15, imgHaert.height = 15);
@@ -124,12 +126,12 @@ function drawHaert() {
 }
 function newHaert(){
     if (haert == arrayHaert.length) {
-        console.log("ok1")
+        
         haert = 0
         arrayHaert = [];
-        for (let i = 0; i < 5; i++) {
-            console.log("ok2")
-            arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500000)-35})
+        for (let i = 0; i < maxHaert; i++) {
+            
+            arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -500)-35})
         }
     }
 }
@@ -172,23 +174,27 @@ document.addEventListener("mousedown", function setProjectile(event) {
 var numTarget;
 function drawProjectile() {
     for(numTarget = 0; numTarget < arrayProjectile.length; numTarget++){
+        
         for (let i = arrayTarget.length-1; i > -1; i--) {
-            if(arrayTarget[i].x < arrayProjectile[numTarget][0]+35 + 5 && arrayTarget[i].x + 35 > arrayProjectile[numTarget][0]+35 && arrayTarget[i].y < arrayProjectile[numTarget][1] + 5 && 35 + arrayTarget[i].y > arrayProjectile[numTarget][1]) { //shoot hit
-                ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
-                arrayProjectile.splice(numTarget, 1);
-                arrayTarget.splice(i, 1, {});
-                score++;
-                target++;
-            }
-            if (arrayProjectile.length > 0) {
-                ctx.beginPath();
-                ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
-                ctx.fillStyle = "#c73133";
-                ctx.fill();
-                ctx.closePath();
-                arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
-                if (arrayProjectile[numTarget][1] < 0) {
+            if (arrayProjectile[numTarget] != undefined) {
+                if(arrayTarget[i].x < arrayProjectile[numTarget][0]+35 + 5 && arrayTarget[i].x + 35 > arrayProjectile[numTarget][0]+35 && arrayTarget[i].y < arrayProjectile[numTarget][1] + 5 && 35 + arrayTarget[i].y > arrayProjectile[numTarget][1]) { //shoot hit
+                    
+                    ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
                     arrayProjectile.splice(numTarget, 1);
+                    arrayTarget.splice(i, 1, {});
+                    score++;
+                    target++;
+                }
+                if (arrayProjectile.length > 0) {
+                    ctx.beginPath();
+                    ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
+                    ctx.fillStyle = "#c73133";
+                    ctx.fill();
+                    ctx.closePath();
+                    arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);
+                    if (arrayProjectile[numTarget][1] < 0) {
+                        arrayProjectile.splice(numTarget, 1);
+                    }
                 }
             }
         }
@@ -207,28 +213,49 @@ function collides() {
             live--;
             checkLive();
         }
+        // if(arrayHaert[i].x < shipX + 70 && arrayHaert[i].x + 15 > shipX && arrayHaert[i].y < yval + 70 && 15 + arrayHaert[i].y > yval) { //target hit
+        //     ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+        //     arrayHaert.splice(i, 1, {});
+        //     live++;
+        //     haert++;
+        //     liveFlex.innerHTML += `<img id="live${live}" class="heartClass" src="assets/img/hearticon-removebg-preview.png"></img>`;
+        //     
+        //     
+        // }
+        if(arrayTarget[i].y > canvas.height) {
+            ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
+            arrayTarget.splice(i, 1, {});
+            target++;
+        }
+        // if(arrayHaert[i].y > canvas.height) {
+        //     ctx.clearRect(arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 35, imgHaert.height = 35);
+        //     arrayHaert.splice(i, 1, {});
+        //     haert++;
+        //     
+        //     
+        // }
+        
+    }
+}
+
+function collidesHaert(){
+    for (let i = 0; i < arrayHaert.length; i++) {
         if(arrayHaert[i].x < shipX + 70 && arrayHaert[i].x + 15 > shipX && arrayHaert[i].y < yval + 70 && 15 + arrayHaert[i].y > yval) { //target hit
             ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
             arrayHaert.splice(i, 1, {});
             live++;
             haert++;
             liveFlex.innerHTML += `<img id="live${live}" class="heartClass" src="assets/img/hearticon-removebg-preview.png"></img>`;
-            console.log(haert)
-            console.log(arrayHaert.length)
-        }
-        if(arrayTarget[i].y > canvas.height) {
-            ctx.clearRect(arrayTarget[i].x, arrayTarget[i].y, image2.width = 35, image2.height = 35);
-            arrayTarget.splice(i, 1, {});
-            target++;
+            
+            
         }
         if(arrayHaert[i].y > canvas.height) {
             ctx.clearRect(arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 35, imgHaert.height = 35);
             arrayHaert.splice(i, 1, {});
             haert++;
-            console.log(haert)
-            console.log(arrayHaert.length)
+            
+            
         }
-        
     }
 }
 
@@ -278,13 +305,14 @@ function draw(){
     drawTarget();
     drawProjectile()
     drawShip();
-    collides()
     logScore()
     //win()
     time()
     newTarget()
     drawHaert()
     newHaert()
+    collides()
+    collidesHaert()
 }
 
 
