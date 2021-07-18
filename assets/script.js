@@ -136,9 +136,11 @@ function drawShip (){
 
 var arrayProjectile = [];
 document.addEventListener("mousedown", function setProjectile(event) {
-    if (play) {
-        if (event.path[0].id === "game") {
-            arrayProjectile.push([shipX, y])        
+    if (event.button == 0) {
+        if (play) {
+            if (event.path[0].id === "game") {
+                arrayProjectile.push([shipX, y])        
+            }
         }
     }
 })
@@ -159,7 +161,7 @@ function drawProjectile() {
                     if (arrayProjectile.length > 0) {
                         ctx.beginPath();
                         ctx.rect(arrayProjectile[numTarget][0]+35, arrayProjectile[numTarget][1] + 15, 5, 5);
-                        ctx.fillStyle = "#c73133";
+                        ctx.fillStyle = "#ffeb3b";
                         ctx.fill();
                         ctx.closePath();
                         arrayProjectile[numTarget][1] = (arrayProjectile[numTarget][1] + dy);

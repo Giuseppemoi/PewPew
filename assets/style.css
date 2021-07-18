@@ -111,6 +111,18 @@ header .title .red {
           align-items: center;
 }
 
+.buttons .bonus {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.buttons .bonus span {
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  padding-left: 0.5rem;
+}
+
 img.heartClass {
   width: 1rem;
   -webkit-animation: heartrotate 4000ms infinite linear;
@@ -261,6 +273,12 @@ body.purple .control {
   text-align: center;
   font-family: "Courier New";
   font-size: 1.3rem;
+  color: white;
+  text-shadow: 0px 5px 5px black;
+}
+
+body.purple .data, body.purple .liveFlex {
+  border-color: rgba(156, 0, 21, 0.5);
   color: white;
   text-shadow: 0px 5px 5px black;
 }
