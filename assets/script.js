@@ -20,7 +20,7 @@ var numberTarget = 5;
 var live = 3;
 
 document.addEventListener("keydown", (event) => {
-    console.log("ok1");
+    
     if (event.code == "Space" && play) {
         startPlay();
         // play = false;
@@ -59,23 +59,20 @@ document.getElementById("buttonReset").addEventListener("click", () => {
 })
 
 document.getElementById("buttonTheme").addEventListener("click", () => {
-    theme++;
-    if(theme === 1) {
-        document.getElementById("game").removeAttribute("class");
-        document.getElementById("game").setAttribute("class", "theme1");
-    }
-    else if(theme === 2) {
-        document.getElementById("game").removeAttribute("class");
-        document.getElementById("game").setAttribute("class", "theme2");
-    }
-    else if(theme === 3) {
-        document.getElementById("game").removeAttribute("class");
-        document.getElementById("game").setAttribute("class", "theme3");
-    }
-    else if(theme === 4) {
+    theme++
+    if(theme == 1) {
+        document.querySelector("body").removeAttribute("class");
+        document.querySelector("body").setAttribute("class", "purple");
+    } else if(theme === 2) {
+        document.querySelector("body").removeAttribute("class");
+        document.querySelector("body").setAttribute("class", "jupiter");
+    } else if(theme === 3) {
+        document.querySelector("body").removeAttribute("class");
+        document.querySelector("body").setAttribute("class", "milkyWay");
+    } else if(theme === 4) {
         theme = 1;
-        document.getElementById("game").removeAttribute("class");
-        document.getElementById("game").setAttribute("class", "theme1");
+        document.querySelector("body").removeAttribute("class");
+        document.querySelector("body").setAttribute("class", "purple");
     }
 });
 
@@ -221,6 +218,7 @@ function checkLive() {
         clearInterval(start);
         document.getElementById("winLose").innerHTML = "You Lose !";
         document.getElementById("game").setAttribute("style", "opacity: 0.5");
+        convertToJSON()
     }
 }
 
@@ -261,7 +259,7 @@ function time(){
             }
         }
     }
-}
+};
 
 function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -275,4 +273,47 @@ function draw(){
     newHaert()
     collides()
     collidesHaert()
-}
+};
+
+document.getElementById("btnTableScore").addEventListener("click", () => {
+    document.getElementById("popup").classList.toggle("show");
+});
+var tableScore = document.getElementById("tableScore");
+var table = document.createElement("table");
+tableScore.appendChild(table);
+for (let a = 0; a < 10; a++) {
+    let row = table.insertRow(a);
+    for (let b = 0; b < 3; b++) {
+        row.insertCell(b).innerText = (b+1) * (a+1);
+    }
+} ;
+var tHead = table.createTHead();
+var rowTHead = tHead.insertRow(0);
+var cellTHead = rowTHead.insertCell(0);
+cellTHead.setAttribute("colspan", "3")
+cellTHead.innerHTML = "Table Score";
+
+
+
+
+
+
+
+
+
+
+
+
+// function convertToJSON() {
+//     var namevalue = "coucou";
+//     var scoreValue = score;
+//     var time = document.getElementById('gameTime').innerHTML;
+//     //var jsonObject = {
+//     localStorage.setItem('Name', JSON.stringify(namevalue));
+//     localStorage.setItem('Score', JSON.stringify(scoreValue));
+//     localStorage.setItem('Time', JSON.stringify(time));
+// }
+
+
+// localStorage.setItem('tableScore', convertToJSON());
+// console.log('localStorage: ', localStorage);

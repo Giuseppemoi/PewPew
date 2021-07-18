@@ -9,20 +9,20 @@ $base-color: #000000;
 
 body{
     margin: 0;
-    background: linear-gradient(to bottom right, #5b467c, #a44c98);
-    // background-color: rgba(114, 187, 216, 0.678);
+    // background: linear-gradient(to bottom right, #5b467c, #a44c98);
 }
 
 header{
-    height: 8vh;
+    height: 1vh;
     display: flex;
     flex-direction: column;
     .title{
+        z-index: 10;
         display: flex;
         flex-direction: column;
         font-family: 'Tourney', cursive;
-        margin: 1rem;
-        font-size: 3rem;
+        margin: 1rem auto;
+        font-size: 5rem;
         text-align: center;
         line-height: 1;
         color: #c6e2ff;
@@ -48,7 +48,7 @@ header{
 }
 
 .buttons{
-    height: 20vh;
+    height: 27.5vh;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -56,13 +56,41 @@ header{
     .btn{
         cursor: url(img/testpng-removebg-preview.png) 2 2, pointer;
     }
-    .control, .winLose, .tableScore{
+    .control, .winLose, .btnTableScore, .options, .buttonTheme{
         flex-grow: 1;
-        width: (100/3) * 1vw;
+        width: ((100/3) * 1vw)-2vw;
+        font-weight: bolder;
+        letter-spacing: .1rem;
     }
-    .buttonStart, .buttonReset, .timer, .target, .buttonDiff, .buttonTheme, .bonus, .liveFlex{
+    .buttonStart, .buttonReset, .buttonDiff, .liveFlex, .data{
+        margin: 0.1rem;
         flex-grow: 1;
-        width: 12.5vw;
+        width: 11.5vw;
+        height: 5rem;
+        font-weight: bolder;
+        letter-spacing: .1rem;
+    }
+    .buttonTheme{
+        margin-top: 1rem;
+    }
+    .data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: solid;
+        font-family: 'Courier New';
+        text-transform: uppercase;
+    }
+    h5{
+        margin: auto;
+        text-align: center;
+        font-size: 1rem;
+        font-family: 'Courier New';
+        text-transform: uppercase;
+    }
+    .liveFlex{
+        border: solid;
+        align-items: center;
     }
 }
 
@@ -77,10 +105,6 @@ img.heartClass{
 }
 
 canvas{
-    // background:  content-box url("img/jupiter_nasa.jpeg");
-    // background: url("img/sky-space-milky-way-stars-110854_reduitweb2.jpeg");
-    background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
-    background-size: cover;
     box-shadow: 2px 2px 7px #0d0a1a;
 }
 
@@ -96,5 +120,100 @@ footer{
     a{
         @include anchor();
 
+    }
+}
+  
+/* The actual popup (appears on top) */
+.popup {
+    display: none;
+    position: fixed;
+    left: 10vw;
+    width: 80vw;
+    background-color: #0d0a1a7c;
+    color: #cecffc;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 11;
+    .tableScore{
+        border-collapse: separate;
+    }
+}
+
+.show {
+    display: inline-block;
+    animation: fadeIn 1s
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    thead{
+        font-size: x-large;
+    }
+    td{
+        border: solid;
+    }
+}
+
+body.purple{
+    background: linear-gradient(to bottom right, #5b467c, #a44c98);
+    canvas{
+        background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
+        background-size: cover;
+    }
+    button{
+        height: 2rem;
+        background-color: rgba(156, 0, 21, 0.5);
+        color: rgb(0, 0, 0);
+        border-radius: 1rem;
+        margin: 0 1vw;
+        border-style: unset;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        font-family: 'Courier New';
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        &:hover {
+            background-color: #5b467c;
+            box-shadow: 0px 15px 20px white;
+            color: #fff;
+            transform: translateY(-7px);
+        }
+    }
+    .control{
+        text-transform: uppercase;
+        font-weight: 900;
+        text-align: center;
+        font-family: "Courier New";
+        font-size: 1.3rem;
+        color: white;
+        text-shadow: 0px 5px 5px rgb(0, 0, 0);
+    }
+}
+
+footer{
+    font-size: 1rem;
+    font-family: 'Courier New';
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: .1rem;
+}
+
+body.jupiter{
+    canvas{
+        background:  content-box url("img/jupiter_nasa.jpeg");
+        background-size: cover;
+    }
+}
+
+body.milkyWay{
+    canvas{
+        background: url("img/sky-space-milky-way-stars-110854_reduitweb2.jpeg");
+        background-size: cover;
     }
 }

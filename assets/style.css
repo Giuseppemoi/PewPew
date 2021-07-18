@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Tourney:ital,wght@1,100&display=swap");
 body {
   margin: 0;
-  background: -webkit-gradient(linear, left top, right bottom, from(#5b467c), to(#a44c98));
-  background: linear-gradient(to bottom right, #5b467c, #a44c98);
 }
 
 header {
-  height: 8vh;
+  height: 1vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,6 +15,7 @@ header {
 }
 
 header .title {
+  z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,8 +24,8 @@ header .title {
       -ms-flex-direction: column;
           flex-direction: column;
   font-family: 'Tourney', cursive;
-  margin: 1rem;
-  font-size: 3rem;
+  margin: 1rem auto;
+  font-size: 5rem;
   text-align: center;
   line-height: 1;
   color: #c6e2ff;
@@ -41,7 +40,7 @@ header .title .red {
 }
 
 .buttons {
-  height: 20vh;
+  height: 27.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -57,18 +56,59 @@ header .title .red {
   cursor: url(img/testpng-removebg-preview.png) 2 2, pointer;
 }
 
-.buttons .control, .buttons .winLose, .buttons .tableScore {
+.buttons .control, .buttons .winLose, .buttons .btnTableScore, .buttons .options, .buttons .buttonTheme {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 33.33333vw;
+  width: 31.33333vw;
+  font-weight: bolder;
+  letter-spacing: .1rem;
 }
 
-.buttons .buttonStart, .buttons .buttonReset, .buttons .timer, .buttons .target, .buttons .buttonDiff, .buttons .buttonTheme, .buttons .bonus, .buttons .liveFlex {
+.buttons .buttonStart, .buttons .buttonReset, .buttons .buttonDiff, .buttons .liveFlex, .buttons .data {
+  margin: 0.1rem;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 12.5vw;
+  width: 11.5vw;
+  height: 5rem;
+  font-weight: bolder;
+  letter-spacing: .1rem;
+}
+
+.buttons .buttonTheme {
+  margin-top: 1rem;
+}
+
+.buttons .data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid;
+  font-family: 'Courier New';
+  text-transform: uppercase;
+}
+
+.buttons h5 {
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
+  font-family: 'Courier New';
+  text-transform: uppercase;
+}
+
+.buttons .liveFlex {
+  border: solid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 img.heartClass {
@@ -100,8 +140,6 @@ img.heartClass {
 }
 
 canvas {
-  background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
-  background-size: cover;
   -webkit-box-shadow: 2px 2px 7px #0d0a1a;
           box-shadow: 2px 2px 7px #0d0a1a;
 }
@@ -126,5 +164,122 @@ footer {
 footer a {
   text-decoration: none;
   color: #000000;
+}
+
+/* The actual popup (appears on top) */
+.popup {
+  display: none;
+  position: fixed;
+  left: 10vw;
+  width: 80vw;
+  background-color: #0d0a1a7c;
+  color: #cecffc;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  z-index: 11;
+}
+
+.popup .tableScore {
+  border-collapse: separate;
+}
+
+.show {
+  display: inline-block;
+  -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table thead {
+  font-size: x-large;
+}
+
+table td {
+  border: solid;
+}
+
+body.purple {
+  background: -webkit-gradient(linear, left top, right bottom, from(#5b467c), to(#a44c98));
+  background: linear-gradient(to bottom right, #5b467c, #a44c98);
+}
+
+body.purple canvas {
+  background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
+  background-size: cover;
+}
+
+body.purple button {
+  height: 2rem;
+  background-color: rgba(156, 0, 21, 0.5);
+  color: black;
+  border-radius: 1rem;
+  margin: 0 1vw;
+  border-style: unset;
+  -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New';
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+body.purple button:hover {
+  background-color: #5b467c;
+  -webkit-box-shadow: 0px 15px 20px white;
+          box-shadow: 0px 15px 20px white;
+  color: #fff;
+  -webkit-transform: translateY(-7px);
+          transform: translateY(-7px);
+}
+
+body.purple .control {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  font-family: "Courier New";
+  font-size: 1.3rem;
+  color: white;
+  text-shadow: 0px 5px 5px black;
+}
+
+footer {
+  font-size: 1rem;
+  font-family: 'Courier New';
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: .1rem;
+}
+
+body.jupiter canvas {
+  background: content-box url("img/jupiter_nasa.jpeg");
+  background-size: cover;
+}
+
+body.milkyWay canvas {
+  background: url("img/sky-space-milky-way-stars-110854_reduitweb2.jpeg");
+  background-size: cover;
 }
 /*# sourceMappingURL=style.css.map */
