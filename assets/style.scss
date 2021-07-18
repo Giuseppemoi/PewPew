@@ -25,25 +25,6 @@ header{
         font-size: 5rem;
         text-align: center;
         line-height: 1;
-        color: #c6e2ff;
-        .blue{
-            text-shadow:
-                0 0 6px rgba(202,228,225,0.92),
-                0 0 30px rgba(202,228,225,0.34),
-                0 0 12px rgba(11, 0, 109,0.52),
-                0 0 21px rgba(11, 0, 109,0.92),
-                0 0 34px rgba(11, 0, 109,0.78),
-                0 0 54px rgba(11, 0, 109, 0.92);
-        }
-        .red{
-            text-shadow:
-                0 0 6px rgba(202,228,225,0.92),
-                0 0 30px rgba(202,228,225,0.34),
-                0 0 12px rgba(156, 0, 21,0.52),
-                0 0 21px rgba(156, 0, 21,0.92),
-                0 0 34px rgba(156, 0, 21,0.78),
-                0 0 54px rgba(156, 0, 21, 0.92);
-        }
     }
 }
 
@@ -130,14 +111,13 @@ footer{
     }
 }
   
-/* The actual popup (appears on top) */
 .popup {
     display: none;
     position: fixed;
     left: 10vw;
     width: 80vw;
-    background-color: #0d0a1a7c;
-    color: #cecffc;
+    // background-color: #0d0a1a7c;
+    // color: #cecffc;
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
@@ -174,6 +154,28 @@ body.purple{
         background: url("img/papers.co-bl97-art-sky-night-star-space-36-3840x2400-4k-wallpaper.jpg");
         background-size: cover;
     }
+    .title{
+        color: #c6e2ff;
+        .blue{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(11, 0, 109,0.52),
+                0 0 21px rgba(11, 0, 109,0.92),
+                0 0 34px rgba(11, 0, 109,0.78),
+                0 0 54px rgba(11, 0, 109, 0.92);
+        }
+        .red{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(156, 0, 21,0.52),
+                0 0 21px rgba(156, 0, 21,0.92),
+                0 0 34px rgba(156, 0, 21,0.78),
+                0 0 54px rgba(156, 0, 21, 0.92);
+        }
+    }
+
     button{
         height: 2rem;
         background-color: rgba(156, 0, 21, 0.5);
@@ -206,6 +208,14 @@ body.purple{
         color: white;
         text-shadow: 0px 5px 5px rgb(0, 0, 0);
     }
+    footer a{
+        color: white;
+    }
+
+    .popup{
+        background-color: #0d0a1a7c;
+        color: #cecffc;
+    }
 }
 
 footer{
@@ -217,9 +227,73 @@ footer{
 }
 
 body.jupiter{
+    background: linear-gradient(to bottom right, #8c4c04, #7c96a9);
     canvas{
         background:  content-box url("img/jupiter_nasa.jpeg");
         background-size: cover;
+    }
+
+    .title{
+        color: #c6e2ff;
+        .blue{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(24,69,106,0.52),
+                0 0 21px rgba(24,69,106,0.92),
+                0 0 34px rgba(24,69,106,0.78),
+                0 0 54px rgba(24,69,106, 0.92);
+        }
+        .red{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(156, 0, 21,0.52),
+                0 0 21px rgba(156, 0, 21,0.92),
+                0 0 34px rgba(156, 0, 21,0.78),
+                0 0 54px rgba(156, 0, 21, 0.92);
+        }
+    }
+
+    button{
+        height: 2rem;
+        background-color: #7c96a9;
+        color: rgb(0, 0, 0);
+        border-radius: 1rem;
+        margin: 0 1vw;
+        border-style: unset;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        font-family: 'Courier New';
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        &:hover {
+            background-color: #8c4c04;
+            box-shadow: 0px 15px 20px white;
+            color: #fff;
+            transform: translateY(-7px);
+        }
+    }
+    .control{
+        text-transform: uppercase;
+        font-weight: 900;
+        text-align: center;
+        font-family: "Courier New";
+        font-size: 1.3rem;
+        color: #7c96a9;
+        text-shadow: 0px 5px 5px rgb(0, 0, 0);
+    }
+    .data, .liveFlex{
+        border-color: #7c96a9;
+        color: #7c96a9;
+        text-shadow: 0px 5px 5px rgb(0, 0, 0);
+    }
+    footer a{
+        color: #8c4c04;
+    }
+
+    .popup{
+        background-color: #0d0a1a7c;
+        color: #7c96a9;
     }
 }
 

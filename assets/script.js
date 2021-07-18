@@ -15,17 +15,9 @@ var start;
 
 var difficulty = 1;
 var theme = 0;
-var minutes = 0;
 var numberTarget = 5;
 var live = 3;
 
-document.addEventListener("keydown", (event) => {
-    if (event.code == "Space" && play) {
-        startPlay();
-    } else if (event.code == "Space" && !play) {
-        startPlay();
-    }
-});
 
 function startPlay(){
     if (play) {
@@ -41,12 +33,14 @@ function startPlay(){
     }
 }
 
-document.getElementById("buttonStart").addEventListener("click", () => {
-    if (play) {
-        startPlay()
-    } else {
-        startPlay()
+document.addEventListener("keyup", (event) => {
+    if (event.code == "Space") {
+        startPlay();
     }
+});
+
+document.getElementById("buttonStart").addEventListener("click", () => {
+    startPlay();
 });
 
 document.getElementById("buttonReset").addEventListener("click", () => {

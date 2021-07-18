@@ -28,15 +28,6 @@ header .title {
   font-size: 5rem;
   text-align: center;
   line-height: 1;
-  color: #c6e2ff;
-}
-
-header .title .blue {
-  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(11, 0, 109, 0.52), 0 0 21px rgba(11, 0, 109, 0.92), 0 0 34px rgba(11, 0, 109, 0.78), 0 0 54px rgba(11, 0, 109, 0.92);
-}
-
-header .title .red {
-  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(156, 0, 21, 0.52), 0 0 21px rgba(156, 0, 21, 0.92), 0 0 34px rgba(156, 0, 21, 0.78), 0 0 54px rgba(156, 0, 21, 0.92);
 }
 
 .buttons {
@@ -178,14 +169,11 @@ footer a {
   color: #000000;
 }
 
-/* The actual popup (appears on top) */
 .popup {
   display: none;
   position: fixed;
   left: 10vw;
   width: 80vw;
-  background-color: #0d0a1a7c;
-  color: #cecffc;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
@@ -243,6 +231,18 @@ body.purple canvas {
   background-size: cover;
 }
 
+body.purple .title {
+  color: #c6e2ff;
+}
+
+body.purple .title .blue {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(11, 0, 109, 0.52), 0 0 21px rgba(11, 0, 109, 0.92), 0 0 34px rgba(11, 0, 109, 0.78), 0 0 54px rgba(11, 0, 109, 0.92);
+}
+
+body.purple .title .red {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(156, 0, 21, 0.52), 0 0 21px rgba(156, 0, 21, 0.92), 0 0 34px rgba(156, 0, 21, 0.78), 0 0 54px rgba(156, 0, 21, 0.92);
+}
+
 body.purple button {
   height: 2rem;
   background-color: rgba(156, 0, 21, 0.5);
@@ -283,6 +283,15 @@ body.purple .data, body.purple .liveFlex {
   text-shadow: 0px 5px 5px black;
 }
 
+body.purple footer a {
+  color: white;
+}
+
+body.purple .popup {
+  background-color: #0d0a1a7c;
+  color: #cecffc;
+}
+
 footer {
   font-size: 1rem;
   font-family: 'Courier New';
@@ -291,9 +300,75 @@ footer {
   letter-spacing: .1rem;
 }
 
+body.jupiter {
+  background: -webkit-gradient(linear, left top, right bottom, from(#8c4c04), to(#7c96a9));
+  background: linear-gradient(to bottom right, #8c4c04, #7c96a9);
+}
+
 body.jupiter canvas {
   background: content-box url("img/jupiter_nasa.jpeg");
   background-size: cover;
+}
+
+body.jupiter .title {
+  color: #c6e2ff;
+}
+
+body.jupiter .title .blue {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(24, 69, 106, 0.52), 0 0 21px rgba(24, 69, 106, 0.92), 0 0 34px rgba(24, 69, 106, 0.78), 0 0 54px rgba(24, 69, 106, 0.92);
+}
+
+body.jupiter .title .red {
+  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92), 0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(156, 0, 21, 0.52), 0 0 21px rgba(156, 0, 21, 0.92), 0 0 34px rgba(156, 0, 21, 0.78), 0 0 54px rgba(156, 0, 21, 0.92);
+}
+
+body.jupiter button {
+  height: 2rem;
+  background-color: #7c96a9;
+  color: black;
+  border-radius: 1rem;
+  margin: 0 1vw;
+  border-style: unset;
+  -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New';
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+body.jupiter button:hover {
+  background-color: #8c4c04;
+  -webkit-box-shadow: 0px 15px 20px white;
+          box-shadow: 0px 15px 20px white;
+  color: #fff;
+  -webkit-transform: translateY(-7px);
+          transform: translateY(-7px);
+}
+
+body.jupiter .control {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  font-family: "Courier New";
+  font-size: 1.3rem;
+  color: #7c96a9;
+  text-shadow: 0px 5px 5px black;
+}
+
+body.jupiter .data, body.jupiter .liveFlex {
+  border-color: #7c96a9;
+  color: #7c96a9;
+  text-shadow: 0px 5px 5px black;
+}
+
+body.jupiter footer a {
+  color: #8c4c04;
+}
+
+body.jupiter .popup {
+  background-color: #0d0a1a7c;
+  color: #7c96a9;
 }
 
 body.milkyWay canvas {
