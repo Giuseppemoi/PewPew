@@ -4,7 +4,7 @@ var image2 = document.getElementById("source2");
 var img = document.getElementById("source");
 var imgHaert = document.getElementById("source3")
 ctx.lineWidth = "5";
-ctx.strokeStyle = "rgb(54, 95, 156)";
+ctx.strokeStyle = "#ffeb3b";
 canvas.width  = window.innerWidth;
 canvas.height = window.innerHeight/1.5;
 var yval = canvas.height-75;
@@ -20,13 +20,10 @@ var numberTarget = 5;
 var live = 3;
 
 document.addEventListener("keydown", (event) => {
-    
     if (event.code == "Space" && play) {
         startPlay();
-        // play = false;
     } else if (event.code == "Space" && !play) {
         startPlay();
-        // play = true;
     }
 });
 
@@ -47,10 +44,8 @@ function startPlay(){
 document.getElementById("buttonStart").addEventListener("click", () => {
     if (play) {
         startPlay()
-        // play = false;
     } else {
         startPlay()
-        // play = true;
     }
 });
 
@@ -141,8 +136,10 @@ function drawShip (){
 
 var arrayProjectile = [];
 document.addEventListener("mousedown", function setProjectile(event) {
-    if (event.path[0].id === "game") {
-        arrayProjectile.push([shipX, y])        
+    if (play) {
+        if (event.path[0].id === "game") {
+            arrayProjectile.push([shipX, y])        
+        }
     }
 })
 
@@ -203,7 +200,7 @@ function collidesHaert(){
             arrayHaert.splice(i, 1, {});
             live++;
             haert++;
-            liveFlex.innerHTML += `<img id="live${live}" class="heartClass" src="assets/img/hearticon-removebg-preview.png"></img>`;
+            liveFlex.innerHTML += `<img id="live${live}" class="heartClass" src="assets/img/heart.png"></img>`;
         }
         if(arrayHaert[i].y > canvas.height) {
             ctx.clearRect(arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = 35, imgHaert.height = 35);
