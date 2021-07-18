@@ -18,6 +18,14 @@ var theme = 0;
 var numberTarget = 5;
 var live = 3;
 
+window.addEventListener("resize", (event) => {
+    if (event) {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight/1.5;
+        yval = canvas.height-75;
+    }
+})
+
 
 function startPlay(){
     if (play) {
@@ -285,12 +293,6 @@ var rowTHead = tHead.insertRow(0);
 var cellTHead = rowTHead.insertCell(0);
 cellTHead.setAttribute("colspan", "3")
 cellTHead.innerHTML = "Table Score";
-
-
-
-
-
-
 
 
 

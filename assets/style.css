@@ -114,6 +114,10 @@ header .title {
   padding-left: 0.5rem;
 }
 
+.buttons span#gameTime, .buttons span.score {
+  margin: auto;
+}
+
 img.heartClass {
   width: 1rem;
   -webkit-animation: heartrotate 4000ms infinite linear;
