@@ -179,7 +179,6 @@ body.purple{
     button{
         height: 2rem;
         background-color: rgba(156, 0, 21, 0.5);
-        color: rgb(0, 0, 0);
         border-radius: 1rem;
         margin: 0 1vw;
         border-style: unset;
@@ -258,7 +257,6 @@ body.jupiter{
     button{
         height: 2rem;
         background-color: #7c96a9;
-        color: rgb(0, 0, 0);
         border-radius: 1rem;
         margin: 0 1vw;
         border-style: unset;
@@ -298,8 +296,73 @@ body.jupiter{
 }
 
 body.milkyWay{
+    background: #0a0925;
     canvas{
         background: url("img/sky-space-milky-way-stars-110854_reduitweb2.jpeg");
         background-size: cover;
+    }
+
+    .title{
+        color: #c6e2ff;
+        .blue{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(11, 0, 109,0.52),
+                0 0 21px rgba(11, 0, 109,0.92),
+                0 0 34px rgba(11, 0, 109,0.78),
+                0 0 54px rgba(11, 0, 109, 0.92);
+        }
+        .red{
+            text-shadow:
+                0 0 6px rgba(202,228,225,0.92),
+                0 0 30px rgba(202,228,225,0.34),
+                0 0 12px rgba(156, 0, 21,0.52),
+                0 0 21px rgba(156, 0, 21,0.92),
+                0 0 34px rgba(156, 0, 21,0.78),
+                0 0 54px rgba(156, 0, 21, 0.92);
+        }
+    }
+
+    button{
+        height: 2rem;
+        background-color: #0a0925;
+        color: white;
+        border-radius: 1rem;
+        margin: 0 1vw;
+        border-style: unset;
+        box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
+        font-family: 'Courier New';
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        &:hover {
+            background-color: #7599db
+            ;
+            box-shadow: 0px 15px 20px white;
+            color: #fff;
+            transform: translateY(-7px);
+        }
+    }
+    .control{
+        text-transform: uppercase;
+        font-weight: 900;
+        text-align: center;
+        font-family: "Courier New";
+        font-size: 1.3rem;
+        color: white;
+        text-shadow: 0px 5px 5px #cb89fa;
+    }
+    .data, .liveFlex{
+        border-color: #ffffff;
+        color: #ffffff;
+        text-shadow: 0px 5px 5px rgb(0, 0, 0);
+    }
+    footer a{
+        color: #cb89fa;
+    }
+
+    .popup{
+        background-color: #0d0a1a7c;
+        color: #cb89fa9c;
     }
 }
