@@ -100,6 +100,7 @@ header .title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-left: 0.5rem;
 }
 
 .buttons .bonus {
@@ -112,6 +113,16 @@ header .title {
   -ms-flex-line-pack: justify;
       align-content: space-between;
   padding-left: 0.5rem;
+}
+
+.buttons .bonus span.shield, .buttons .bonus span.triple {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.buttons .bonus span.shield div.shieldTime, .buttons .bonus span.shield div.tripleTime, .buttons .bonus span.triple div.shieldTime, .buttons .bonus span.triple div.tripleTime {
+  padding-left: .5rem;
 }
 
 .buttons span#gameTime, .buttons span.score {
@@ -176,8 +187,8 @@ footer a {
 .popup {
   display: none;
   position: fixed;
-  left: 10vw;
-  width: 80vw;
+  left: 25vw;
+  width: 50vw;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;

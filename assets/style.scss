@@ -72,12 +72,22 @@ header{
     .liveFlex{
         border: solid;
         align-items: center;
+        padding-left: 0.5rem;
     }
     .bonus{
         align-items: flex-start;
         span{
             align-content: space-between;
             padding-left: 0.5rem;
+            &.shield, &.triple{
+                display: flex;
+                div{
+                    &.shieldTime, &.tripleTime{
+                        padding-left: .5rem;
+                    }
+
+                }
+            }
         }
     }
 
@@ -120,10 +130,8 @@ footer{
 .popup {
     display: none;
     position: fixed;
-    left: 10vw;
-    width: 80vw;
-    // background-color: #0d0a1a7c;
-    // color: #cecffc;
+    left: 25vw;
+    width: 50vw;
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
