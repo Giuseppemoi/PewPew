@@ -55,6 +55,39 @@ header .btn {
   cursor: pointer;
 }
 
+header .control {
+  border: solid;
+}
+
+header .control .bounce {
+  position: relative;
+  margin: .1rem;
+}
+
+@-webkit-keyframes bounce {
+  from {
+    top: 0vh;
+  }
+  50% {
+    top: 1vh;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes bounce {
+  from {
+    top: 0vh;
+  }
+  50% {
+    top: 1vh;
+  }
+  to {
+    top: 0px;
+  }
+}
+
 .buttons {
   height: 15vh;
   display: -webkit-box;

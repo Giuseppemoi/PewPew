@@ -45,6 +45,20 @@ header{
     .btn{
         cursor: pointer;
     }
+    .control{
+        border: solid;
+        .bounce{
+            position: relative;
+            margin: .1rem;
+            // animation: bounce 0.7s ease infinite;
+        }
+    }
+}
+
+@keyframes bounce{
+    from {top: 0vh;}
+    50%  {top: 1vh;}
+    to   {top: 0px;}
 }
 
 .buttons{
