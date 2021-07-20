@@ -340,8 +340,9 @@ function collidesCleaner(){
 };
 
 var colCleaner = false;
-var canvasCleanerY = canvas.height
+var canvasCleanerY = canvas.height;
 var arrayCanvasCleaner = [0, canvasCleanerY];
+var progress = document.getElementById("cleanerTime");
 function drawCanvasCleaner() {
     if (colCleaner) {
         if (arrayCleaner.length > 0) {
@@ -351,9 +352,11 @@ function drawCanvasCleaner() {
             ctx.fill();
             ctx.closePath();
             arrayCanvasCleaner[1] = (arrayCanvasCleaner[1] + dy);
+            progress.value += 100/(((canvas.height)-70)/2);
+            
         }
     }
-}
+};
 
 function collidesCanvasCleaner() {
     for (let i = 0; i < arrayTarget.length; i++) {
@@ -368,6 +371,7 @@ function collidesCanvasCleaner() {
         if(arrayCanvasCleaner[1] < 0) {
             colCleaner = false;
             arrayCanvasCleaner = [0, canvasCleanerY];
+            progress.value = 0;
         }
     }
 }
@@ -598,7 +602,19 @@ tr.appendChild(th1);
 tr.appendChild(th2);
 tr.appendChild(th3);
 
-
+// var cleanerTime = document.getElementById("cleanerTime");
+// var inter = setInterval(barre, 50);
+// var progressBarre = 0;
+// function barre() {
+//     if (progressBarre < 100) {
+//         progressBarre++;
+//         cleanerTime.style.width = progressBarre + "%";
+//         
+//     } else {
+//         clearInterval(inter)
+//     }
+//     cleanerTime;
+// }
 
 
 

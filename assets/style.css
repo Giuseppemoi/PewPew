@@ -115,18 +115,30 @@ header .title {
   padding-left: 0.5rem;
 }
 
-.buttons .bonus span.shield, .buttons .bonus span.triple {
+.buttons .bonus span.shield, .buttons .bonus span.triple, .buttons .bonus span.cleaner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.buttons .bonus span.shield div.shieldTime, .buttons .bonus span.shield div.tripleTime, .buttons .bonus span.triple div.shieldTime, .buttons .bonus span.triple div.tripleTime {
-  padding-left: .5rem;
+.buttons .bonus span.shield div.shieldTime, .buttons .bonus span.shield div.tripleTime, .buttons .bonus span.triple div.shieldTime, .buttons .bonus span.triple div.tripleTime, .buttons .bonus span.cleaner div.shieldTime, .buttons .bonus span.cleaner div.tripleTime {
+  margin-left: .5rem;
 }
 
 .buttons span#gameTime, .buttons span.score {
   margin: auto;
+}
+
+.buttons .cleanerTime {
+  margin-left: .5rem;
+  margin-bottom: .1rem;
+}
+
+.buttons progress {
+  width: 7rem;
 }
 
 img.heartClass {
