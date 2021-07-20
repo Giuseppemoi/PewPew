@@ -4,18 +4,17 @@ body {
 }
 
 header {
-  height: 1vh;
+  height: 13.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header .title {
-  z-index: 10;
+  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,15 +22,41 @@ header .title {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-family: 'Tourney', cursive;
-  margin: 1rem auto;
-  font-size: 5rem;
+  font-family: 'Tourney';
+  font-size: 4rem;
   text-align: center;
   line-height: 1;
 }
 
+header .control, header .title, header .options {
+  width: 33%;
+}
+
+header .control, header .options {
+  padding: 1rem;
+  font-weight: bolder;
+  letter-spacing: .1rem;
+}
+
+header .btnTableScore, header .buttonTheme {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 31.33333vw;
+  font-weight: bolder;
+  letter-spacing: .1rem;
+}
+
+header .buttonTheme {
+  margin-top: 1rem;
+}
+
+header .btn {
+  cursor: pointer;
+}
+
 .buttons {
-  height: 27.5vh;
+  height: 15vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,16 +69,7 @@ header .title {
 }
 
 .buttons .btn {
-  cursor: url(img/testpng-removebg-preview.png) 2 2, pointer;
-}
-
-.buttons .control, .buttons .winLose, .buttons .btnTableScore, .buttons .options, .buttons .buttonTheme {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  width: 31.33333vw;
-  font-weight: bolder;
-  letter-spacing: .1rem;
+  cursor: pointer;
 }
 
 .buttons .buttonStart, .buttons .buttonReset, .buttons .buttonDiff, .buttons .liveFlex, .buttons .data {
@@ -67,8 +83,8 @@ header .title {
   letter-spacing: .1rem;
 }
 
-.buttons .buttonTheme {
-  margin-top: 1rem;
+.buttons .buttonStart, .buttons .buttonReset {
+  margin: 0.5rem;
 }
 
 .buttons .data {
@@ -89,6 +105,7 @@ header .title {
 
 .buttons h5 {
   margin: auto;
+  margin-top: 0;
   text-align: center;
   font-size: 1rem;
   font-family: 'Courier New';
@@ -274,7 +291,7 @@ body.purple button {
   height: 2rem;
   background-color: rgba(156, 0, 21, 0.5);
   border-radius: 1rem;
-  margin: 0 1vw;
+  margin: .5rem;
   border-style: unset;
   -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -352,7 +369,7 @@ body.jupiter button {
   height: 2rem;
   background-color: #7c96a9;
   border-radius: 1rem;
-  margin: 0 1vw;
+  margin: .5rem;
   border-style: unset;
   -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -422,7 +439,7 @@ body.milkyWay button {
   background-color: #0a0925;
   color: white;
   border-radius: 1rem;
-  margin: 0 1vw;
+  margin: .5rem;
   border-style: unset;
   -webkit-box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
           box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);

@@ -13,36 +13,50 @@ body{
 }
 
 header{
-    height: 1vh;
+    height: 13.5vh;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     .title{
-        z-index: 10;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        font-family: 'Tourney', cursive;
-        margin: 1rem auto;
-        font-size: 5rem;
+        font-family: 'Tourney';
+        font-size: 4rem;
         text-align: center;
         line-height: 1;
     }
-}
-
-.buttons{
-    height: 27.5vh;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100vw;
-    .btn{
-        cursor: url(img/testpng-removebg-preview.png) 2 2, pointer;
+    .control, .title, .options{
+        width: 33%;
     }
-    .control, .winLose, .btnTableScore, .options, .buttonTheme{
+    .control, .options{
+        padding: 1rem;
+        font-weight: bolder;
+        letter-spacing: .1rem;
+    }
+    .btnTableScore, .buttonTheme{
         flex-grow: 1;
         width: ((100/3) * 1vw)-2vw;
         font-weight: bolder;
         letter-spacing: .1rem;
     }
+    .buttonTheme{
+        margin-top: 1rem;
+    }
+    .btn{
+        cursor: pointer;
+    }
+}
+
+.buttons{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    .btn{
+        cursor: pointer;
+    }
+    
     .buttonStart, .buttonReset, .buttonDiff, .liveFlex, .data{
         margin: 0.1rem;
         flex-grow: 1;
@@ -51,9 +65,10 @@ header{
         font-weight: bolder;
         letter-spacing: .1rem;
     }
-    .buttonTheme{
-        margin-top: 1rem;
+    .buttonStart, .buttonReset{
+        margin: 0.5rem;
     }
+    
     .data {
         display: flex;
         flex-direction: column;
@@ -64,6 +79,7 @@ header{
     }
     h5{
         margin: auto;
+        margin-top: 0;
         text-align: center;
         font-size: 1rem;
         font-family: 'Courier New';
@@ -202,7 +218,7 @@ body.purple{
         height: 2rem;
         background-color: rgba(156, 0, 21, 0.5);
         border-radius: 1rem;
-        margin: 0 1vw;
+        margin: .5rem;
         border-style: unset;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         font-family: 'Courier New';
@@ -280,7 +296,7 @@ body.jupiter{
         height: 2rem;
         background-color: #7c96a9;
         border-radius: 1rem;
-        margin: 0 1vw;
+        margin: .5rem;
         border-style: unset;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         font-family: 'Courier New';
@@ -352,7 +368,7 @@ body.milkyWay{
         background-color: #0a0925;
         color: white;
         border-radius: 1rem;
-        margin: 0 1vw;
+        margin: .5rem;
         border-style: unset;
         box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
         font-family: 'Courier New';
