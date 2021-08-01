@@ -19,8 +19,7 @@
         </div>
     </header>
     <div class="buttons">
-        <!-- <p class="winLose" id="winLose"></p> -->
-        <button class="buttonStart btn" id="buttonStart">Start game</button>
+        <button class="buttonStart btn" id="buttonStart" disabled="true">Start game</button>
         <button class="buttonReset btn" id="buttonReset">Play again</button>
         <p class="data">Timer<span id="gameTime"></span></p>
         <p class="data" id="targetIt">Score<span id="score" class="score"></span></p>
@@ -49,8 +48,17 @@
     <div class="popup" id="popup">
         <div class="tableScore" id="tableScore"></div>
     </div>
+    <div id="popUpOver" class="popUpOver">
+        <form action="">
+            <h6>GOOD GAME!</h6>
+            <p>Insert your name please</p>
+            <label for="name"></label>
+            <input type="text" name="name">
+            <button id="lose">Submit</button>
+        </form>
+    </div>
     <canvas id="game"></canvas>
-    <img class="none" id="source" src="assets/img/testpng-removebg-preview.png">
+    <img class="none" id="source" src="assets/img/ship.png">
     <img class="none" id="source2" src="assets/img/target.png">
     <img class="none" id="source3" src="assets/img/heart.png">
     <img class="none" id="source4" src="assets/img/shield.png">
@@ -60,8 +68,8 @@
     <footer>
         <a href="https://becode.org/" target="blank">BeCode</a>
         <a href="https://github.com/Giuseppemoi" target="blank">Giuseppe Moi 2021</a>
-        <a href="https://github.com/MathisVkg" target="blank">Mathis</a>
+        <a href="https://mathisvkg.github.io/PewPew/" target="blank">Mathis Vkg</a>
     </footer>
-    <script src="assets/script.js"></script>
+    <script type="module" src="assets/JS/script.js"></script>
 </body>
 </html>

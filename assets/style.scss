@@ -161,7 +161,6 @@ footer{
     height: ((100 - 9 - 20) - (100 / 3 * 2)) * 1vh;
     a{
         @include anchor();
-
     }
 }
   
@@ -186,7 +185,7 @@ footer{
 
 @keyframes fadeIn {
     from {opacity: 0;}
-    to {opacity:1 ;}
+    to {opacity: 1;}
 }
 
 table{
@@ -417,5 +416,44 @@ body.milkyWay{
     .popup{
         background-color: #0d0a1a7c;
         color: #cb89fa9c;
+    }
+}
+
+.popUpOver{
+    background-color: rgba(161, 160, 160, 0.445);
+    //display: flex;
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0vh;
+    form{
+        background-color: rgba(161, 160, 160, 0.445);
+        width: 50vw;
+        height: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        box-shadow: 
+            inset -1em -1em 1em rgba(129, 129, 129, 0.548),
+            inset 1em 1em 1em rgba(129, 129, 129, 0.548);
+        h6{
+            font-size: xx-large;
+            margin: 1rem;
+        }
+        p{
+            font-size: x-large;
+        }
+        input{
+            margin-bottom: 1rem;
+        }
+        button{
+            width: 6rem;
+            height: 2rem;
+            border-radius: .5rem;
+        }
     }
 }

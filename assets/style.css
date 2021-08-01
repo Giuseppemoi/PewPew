@@ -515,4 +515,55 @@ body.milkyWay .popup {
   background-color: #0d0a1a7c;
   color: #cb89fa9c;
 }
+
+.popUpOver {
+  background-color: rgba(161, 160, 160, 0.445);
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0vh;
+}
+
+.popUpOver form {
+  background-color: rgba(161, 160, 160, 0.445);
+  width: 50vw;
+  height: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1rem;
+  -webkit-box-shadow: inset -1em -1em 1em rgba(129, 129, 129, 0.548), inset 1em 1em 1em rgba(129, 129, 129, 0.548);
+          box-shadow: inset -1em -1em 1em rgba(129, 129, 129, 0.548), inset 1em 1em 1em rgba(129, 129, 129, 0.548);
+}
+
+.popUpOver form h6 {
+  font-size: xx-large;
+  margin: 1rem;
+}
+
+.popUpOver form p {
+  font-size: x-large;
+}
+
+.popUpOver form input {
+  margin-bottom: 1rem;
+}
+
+.popUpOver form button {
+  width: 6rem;
+  height: 2rem;
+  border-radius: .5rem;
+}
 /*# sourceMappingURL=style.css.map */
