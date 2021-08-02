@@ -35,7 +35,6 @@ function resize() {
 
 window.addEventListener("resize", () => {
     resize()
-    console.log('yShip: ', yShip);
 })
 
 function disableTheme() {
@@ -110,7 +109,7 @@ var dy = -2;
 
 var shipX;
 document.addEventListener('mousemove', function(event) {
-    if (event.path[0].id === "game") {
+    if (event.target.id === "game") {
         shipX = event.clientX-35
     }
 });
@@ -121,11 +120,10 @@ let heartHeight = 15;
 var maxHaert = 1
 var arrayHaert = [];
 var haert = 0
-let popPosition = 30000;
+let popPosition = 36000;
 function popHaert() {
     for (let i = 0; i < maxHaert; i++) {
         arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -heartWidth)), y: Math.floor(Math.random() * -popPosition) - heartHeight})
-        console.log('arrayHaert: ', arrayHaert);
     };
 }
 
@@ -450,7 +448,7 @@ var arrayProjectile = [];
 document.addEventListener("mousedown", function setProjectile(event) {
     if (event.button == 0) {
         if (play) {
-            if (event.path[0].id === "game") {
+            if (event.target.id === "game") {
                 funcMusic.actionSound(funcMusic.peww);
                 arrayProjectile.push([shipX, y]);
             }
