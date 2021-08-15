@@ -1,8 +1,8 @@
 <?php
 //session_start();
-include 'assets/php/connection_db.php';
-include 'assets/php/select.php';
-include 'assets/php/insert.php';
+// include 'assets/php/connection_db.php';
+// include 'assets/php/select.php';
+// include 'assets/php/insert.php';
 
 ?>
 
