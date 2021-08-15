@@ -3,13 +3,19 @@ import * as funcMusic from "./musicFunctions.js";
 let canvas = document.getElementById("game");
 let popUpOver = document.getElementById("popUpOver");
 let ctx = canvas.getContext("2d");
-let imgTarget = document.getElementById("source2");
 let imgShip = document.getElementById("source");
+let imgTarget = document.getElementById("source2");
 let imgHaert = document.getElementById("source3");
+let imgShield = document.getElementById("source4");
+let imgTriple = document.getElementById("source5");
+let imgCleaner = document.getElementById("source6");
+let imgShipShield = document.getElementById("source7");
+let buttonStart = document.getElementById("buttonStart");
+let buttonTheme = document.getElementById("buttonTheme");
+let buttonReset = document.getElementById("buttonReset");
 
 // Set context & canvas
 ctx.lineWidth = "5";
-ctx.strokeStyle = "#ffeb3b";
 canvas.width  = window.innerWidth;
 canvas.height = window.innerHeight / 1.5;
 let yShip = canvas.height-80;
@@ -19,12 +25,8 @@ var play = false;
 var start;
 
 var difficulty = 1;
-var theme = 0;
 var numberTarget = 10;
 var live = 3;
-
-var animControl = document.getElementById("bounce");
-animControl.style.animation = "bounce 0.7s ease infinite";
 
 function resize() {
     canvas.width  = window.innerWidth;
@@ -37,72 +39,40 @@ window.addEventListener("resize", () => {
     resize()
 })
 
-function disableTheme() {
-    if (theme === 0) {
-        document.getElementById("buttonStart").setAttribute("disabled", "true")
-    } else {
-        document.getElementById("buttonStart").removeAttribute("disabled")
-    }
-}
-
 function startPlay(){
     if (play) {
-        document.getElementById("buttonStart").innerHTML = "Start game";
+        buttonStart.innerHTML = "Start game";
         clearInterval(start);
         play = false;
         document.exitFullscreen();
         canvas.setAttribute("style", "");
         funcMusic.pauseMusic()
-        document.getElementById("buttonTheme").removeAttribute("disabled")
+        buttonTheme.removeAttribute("disabled")
     } else {
-        document.getElementById("buttonStart").innerHTML = "Pause game";
+        buttonStart.innerHTML = "Pause game";
         start = setInterval(draw, 10);
         play = true;
         document.documentElement.requestFullscreen();
         canvas.setAttribute("style", "cursor:none");
         funcMusic.playMusic();
-        document.getElementById("buttonTheme").setAttribute("disabled", "true")
+        buttonTheme.setAttribute("disabled", "true")
+        popup.setAttribute('style', 'display:none');
     }
 }
 
 document.addEventListener("keyup", (event) => {
-    if (event.code == "Space") {
+    if (event.code === "Space") {
         startPlay();
     }
 });
 
-document.getElementById("buttonStart").addEventListener("click", () => {
+buttonStart.addEventListener("click", () => {
     startPlay();
 });
 
-document.getElementById("buttonReset").addEventListener("click", () => {
-    window.location.reload()
-})
-
-document.getElementById("buttonTheme").addEventListener("click", () => {
-    theme++
-    if(theme == 1) {
-        animControl.style.animation = "";
-        document.querySelector("body").removeAttribute("class");
-        document.querySelector("body").setAttribute("class", "purple");
-    } else if(theme === 2) {
-        animControl.style.animation = "";
-        document.querySelector("body").removeAttribute("class");
-        document.querySelector("body").setAttribute("class", "jupiter");
-    } else if(theme === 3) {
-        animControl.style.animation = "";
-        document.querySelector("body").removeAttribute("class");
-        document.querySelector("body").setAttribute("class", "milkyWay");
-    } else if(theme === 4) {
-        animControl.style.animation = "";
-        theme = 1;
-        animControl.removeAttribute("animation");
-        animControl.removeAttribute("-webkit-animation");
-        document.querySelector("body").removeAttribute("class");
-        document.querySelector("body").setAttribute("class", "purple");
-    }
-    disableTheme()
-});
+buttonReset.addEventListener("click", () => {
+    window.location.reload();
+}) 
 
 var y = canvas.height-75;
 var dy = -2;
@@ -124,7 +94,7 @@ let popPosition = 36000;
 function popHaert() {
     for (let i = 0; i < maxHaert; i++) {
         arrayHaert.push({x: Math.floor(Math.random() * (canvas.width -heartWidth)), y: Math.floor(Math.random() * -popPosition) - heartHeight})
-    };
+    }
 }
 
 function drawHaert() {
@@ -132,18 +102,17 @@ function drawHaert() {
         ctx.drawImage(imgHaert, arrayHaert[i].x, arrayHaert[i].y, imgHaert.width = heartWidth, imgHaert.height = heartHeight);
         arrayHaert[i].y += 2 * difficulty; 
     }
-};
+}
 
 function newHaert(){
-    if (haert == arrayHaert.length) {
+    if (haert === arrayHaert.length) {
         haert = 0;
         arrayHaert = [];
         popHaert()
     }
-};
+}
 
 // draw shield bonus & colides
-var imgShield = document.getElementById("source4");
 
 var maxShield = 1;
 var arrayShield = [];
@@ -151,24 +120,24 @@ var shield = 0;
 var sizeShield = 15;
 for (let i = 0; i < maxShield; i++) {
     arrayShield.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -popPosition)-35});
-};
+}
 
 function drawShield() {
     for (let i = 0; i < arrayShield.length; i++) {
         ctx.drawImage(imgShield, arrayShield[i].x, arrayShield[i].y, imgShield.width = sizeShield, imgShield.height = sizeShield);
         arrayShield[i].y += 2 * difficulty; 
     }
-};
+}
 
 function newShield(){
-    if (shield == arrayShield.length) {
+    if (shield === arrayShield.length) {
         shield = 0;
         arrayShield = [];
         for (let i = 0; i < maxShield; i++) {
             arrayShield.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -popPosition)-35});
         }
     }
-};
+}
 
 function collidesShield(){
     for (let i = 0; i < arrayShield.length; i++) {
@@ -184,9 +153,9 @@ function collidesShield(){
             shield++;
         }
     }
-};
+}
 
-var shieldTime = 0;
+let shieldTime = 0;
 function shieldTimer() {
     
     if (shieldTime > 0) {
@@ -197,14 +166,13 @@ function shieldTimer() {
     } else {
         document.getElementById("shieldTime").innerHTML = "00" + " : " + Math.floor(shieldTime/100);
     }
-    if (shieldTime == 0) {
+    if (shieldTime === 0) {
         colShield = false;
         document.getElementById("shieldTime").innerHTML = "00 : 00";
     }
 };
 
-var colShield = false;
-var imgShipShield = document.getElementById("source7");
+let colShield = false;
 function drawShipShield() {
     if (colShield) {
         ctx.drawImage(imgShipShield, shipX-7, yShip-7, imgShipShield.width = 85, imgShipShield.height = 85);
@@ -212,11 +180,10 @@ function drawShipShield() {
 }
 
 // draw triple laser bonus & colides
-var imgTriple = document.getElementById("source5");
 
-var maxTriple = 1;
-var arrayTriple = [];
-var triple = 0;
+let maxTriple = 1;
+let arrayTriple = [];
+let triple = 0;
 var sizeTriple = 15;
 for (let i = 0; i < maxTriple; i++) {
     arrayTriple.push({x: Math.floor(Math.random() * (canvas.width -35)), y: Math.floor(Math.random() * -popPosition)-35});
@@ -331,7 +298,6 @@ function drawShipTriple() {
 }
 
 // draw cleaner bonus & colides
-var imgCleaner = document.getElementById("source6");
 
 var maxCleaner = 1;
 var arrayCleaner = [];
@@ -540,8 +506,15 @@ function collidesHaert(){
 function checkLive() {
     if(live === 0) {
         funcMusic.pauseMusic();
-        popUpOver.setAttribute("style", "display:flex");
         clearInterval(start);
+        let time_php = document.getElementById('time_php');
+        time_php.value = document.getElementById("gameTime").innerHTML;
+        let score_php = document.getElementById('score_php');
+        score_php.value = score;
+
+        // window.location.href = "?time=00:" + document.getElementById("gameTime").innerHTML + "&score=" + score;
+        popUpOver.setAttribute("style", "display:flex");
+
     }
 }
 
@@ -573,15 +546,15 @@ function time(){
             if ((timer/100)%6000 < 10) {
                 document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + "0" + Math.floor((timer - 360000) / 6000) + " : " + "0" + Math.floor((timer/100)%60);
             } else {document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + Math.floor((timer - 360000) / 6000) + " : " + "0" + Math.floor((timer/100)%60);
-            }
+        }
+    } else {
+        if ((timer/100)%6000 > 10) {
+            document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + Math.floor((timer - 360000) / 6000) + " : " + Math.floor((timer/100)%60);
         } else {
-            if ((timer/100)%6000 > 10) {
-                document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + Math.floor((timer - 360000) / 6000) + " : " + Math.floor((timer/100)%60);
-            } else {
-                document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + "0" + Math.floor((timer - 360000) / 6000) + " : " + Math.floor((timer/100)%60);
-            }
+            document.getElementById("gameTime").innerHTML = "0" + Math.floor(timer/360000) + " : " + "0" + Math.floor((timer - 360000) / 6000) + " : " + Math.floor((timer/100)%60);
         }
     }
+}
 };
 
 function draw(){
@@ -612,31 +585,14 @@ function draw(){
     drawCanvasCleaner()
     collidesCanvasCleaner()
 };
-document.getElementById("btnTableScore").addEventListener("click", () => {
-    document.getElementById("popup").classList.toggle("show");
-});
-var tableScore = document.getElementById("tableScore");
-var table = document.createElement("table");
-tableScore.appendChild(table);
-for (let a = 0; a < 10; a++) {
-    let row = table.insertRow(a);
-    for (let b = 0; b < 3; b++) {
-        row.insertCell(b).innerText = (b+1) * (a+1);
-    }
-} ;
-var tHead = table.createTHead();
+let popup = document.getElementById("popup");
 
-var rowTHead = tHead.insertRow(0);
-var cellTHead = rowTHead.insertCell(0);
-cellTHead.setAttribute("colspan", "3")
-cellTHead.innerHTML = "Table Score";
-var tr = document.querySelector('table').children[0];
-let th1 = document.createElement('th');
-let th2 = document.createElement('th');
-let th3 = document.createElement('th');
-th1.innerHTML = "Name";
-th2.innerHTML = "Score";
-th3.innerHTML = "Time";
-tr.appendChild(th1);
-tr.appendChild(th2);
-tr.appendChild(th3);
+document.getElementById("btnTableScore").addEventListener("click", () => {
+    let popupAttrib = document.getElementById("popup").attributes.style.value;
+
+    if (popupAttrib == "display:flex" || popupAttrib == undefined) {
+        popup.setAttribute('style', 'display:none');
+    } else {
+        popup.setAttribute('style', 'display:flex');
+    }
+});
