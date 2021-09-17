@@ -42,7 +42,7 @@ ___
 
 3. ***Life***
 
-    ![The Life](assets/img/heart.png "The Life") Some haert will appear to give you more life 
+    ![The Life](assets/img/heart.png "The Life") Some heart will appear to give you more life 
 ___
 
 ## Credits
